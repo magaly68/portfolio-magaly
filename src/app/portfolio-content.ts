@@ -41,9 +41,9 @@ export const portfolioContent = {
   cvUrl: '/documents/Magaly-Wintzer-CV.pdf',
   hero: {
     eyebrow: 'Portfolio 2026 / Angular',
-    title: "Je conçois des interfaces front-end sobres, utiles et pensées pour être comprises rapidement.",
+    title: "Je construis des interfaces front-end sobres, utiles et faites pour être comprises rapidement.",
     text:
-      "Je m'appelle Magaly Wintzer. À partir de mon profil GitHub public, du projet EpiGuard et de plusieurs dépôts personnels, ce portfolio raconte un parcours en construction entre HTML, CSS, JavaScript, Angular, prototypes mobiles et curiosité technique.",
+      "Je suis Magaly Wintzer. À partir de mon profil GitHub public, du projet EpiGuard et de plusieurs dépôts personnels, ce portfolio raconte un parcours en construction entre HTML, CSS, JavaScript, React, Angular, des prototypes mobiles et des projets réalisés pour le web.",
     projectsCta: 'Voir les projets',
     cvCta: 'Télécharger le CV',
     githubCta: 'Ouvrir GitHub',
@@ -53,25 +53,25 @@ export const portfolioContent = {
   intro: {
     eyebrow: 'Profil',
     title:
-      "Un parcours qui avance par projets, avec une attention réelle pour la lisibilité, l'usage et le rythme d'une interface.",
+      "Un parcours qui avance par projets, avec une vraie attention pour la lisibilité, l'UX et l'accessibilité.",
     paragraphs: [
-      "Je travaille le front-end comme un espace de clarté. J'aime organiser une page, faire ressortir l'information essentielle et donner à chaque interaction une raison d'être.",
+      "Je travaille surtout le front-end comme un espace de clarté et j'aime organiser une page, faire ressortir l'information essentielle et donner à chaque interaction une raison d'être.",
       "Mes projets publics montrent cette progression : des bases HTML et CSS jusqu'à des interfaces plus denses, des expériences narratives et un prototype mobile pensé comme un vrai produit."
     ]
   },
   timeline: {
-    eyebrow: 'Parcours',
+    eyebrow: 'Mon parcours',
     title:
       "Le fil conducteur reste le même : apprendre en fabriquant, puis rendre chaque projet plus lisible et plus utile que le précédent."
   },
   projectsSection: {
     eyebrow: 'Projets choisis',
-    title: "Une sélection courte pour comprendre comment je passe d'une idée à une interface concrète."
+    title: "Une sélection courte pour comprendre comment je passe d'une idée à un projet concret."
   },
   focusSection: {
     eyebrow: 'Axes de travail',
     title:
-      "Le cœur de ce que je développe aujourd'hui : interface, logique front-end, produit et fondamentaux techniques."
+      "Le cœur de ce que je développe aujourd'hui : l'interface, la logique front-end, le produit et les fondamentaux techniques."
   },
   contactSection: {
     eyebrow: 'Contact',
@@ -80,7 +80,7 @@ export const portfolioContent = {
       "Le portfolio renvoie vers GitHub, mais vous pouvez aussi me contacter directement depuis cette page ou télécharger un CV de synthèse. Les messages sont transmis à wintzer.magaly@gmail.com.",
     cvCta: 'Télécharger le CV',
     githubCta: 'Aller sur GitHub',
-    emailCta: 'Envoyer un email direct',
+    emailCta: 'Envoyer un e-mail direct',
     successMessage:
       "Message envoyé. Vérifiez votre boîte Gmail pour confirmer FormSubmit lors du tout premier envoi.",
     errorMessage:
