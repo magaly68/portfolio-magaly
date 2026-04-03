@@ -14,32 +14,25 @@
 
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">Portfolio 2026 / Angular</p>
-      <p class="brand-line">{{ fullName }} / magaly68</p>
-      <h1>Je construis des interfaces front-end sobres, utiles et faites pour etre comprises vite.</h1>
-      <p class="hero-text">
-        Je m appelle <strong>{{ fullName }}</strong>. A partir de mon profil GitHub public
-        <strong>magaly68</strong> et du projet <strong>EpiGuard</strong>, ce portfolio raconte
-        un parcours en construction entre HTML, CSS, JavaScript, Angular, prototypes mobiles et
-        curiosite technique.
-      </p>
+      <p class="eyebrow">{{ content.hero.eyebrow }}</p>
+      <p class="brand-line">{{ content.fullName }} / {{ content.handle }}</p>
+      <h1>{{ content.hero.title }}</h1>
+      <p class="hero-text">{{ content.hero.text }}</p>
 
       <div class="hero-actions">
-        <a class="button button-primary" href="#projets">Voir les projets</a>
-        <a class="button button-secondary" [href]="cvUrl" download>
-          Telecharger le CV
-        </a>
+        <a class="button button-primary" href="#projets">{{ content.hero.projectsCta }}</a>
+        <a class="button button-secondary" [href]="cvUrl" download>{{ content.hero.cvCta }}</a>
         <a
           class="button button-secondary"
           href="https://github.com/magaly68"
           target="_blank"
           rel="noreferrer"
         >
-          Ouvrir GitHub
+          {{ content.hero.githubCta }}
         </a>
       </div>
 
-      <ul class="metric-row" aria-label="Points cles">
+      <ul class="metric-row" aria-label="Points clés">
         @for (metric of metrics; track metric.label) {
           <li>
             <strong>{{ metric.value }}</strong>
@@ -76,8 +69,8 @@
       <div class="signal-note">
         <span class="signal-dot"></span>
         <div>
-          <strong>Interaction thesis</strong>
-          <p>Reveal progressif, rail de projets interactif et hero qui reagit au scroll.</p>
+          <strong>{{ content.hero.noteTitle }}</strong>
+          <p>{{ content.hero.noteText }}</p>
         </div>
       </div>
     </div>
@@ -85,19 +78,13 @@
 
   <section class="section section-intro" id="parcours">
     <div class="section-heading">
-      <p class="eyebrow">Profil</p>
-      <h2>Un parcours qui avance par projets, avec une vraie attention pour la lisibilite, l usage et le rythme d une interface.</h2>
+      <p class="eyebrow">{{ content.intro.eyebrow }}</p>
+      <h2>{{ content.intro.title }}</h2>
     </div>
 
     <div class="intro-grid">
-      <p>
-        Je travaille surtout le front-end comme un espace de clarte. J aime organiser une page,
-        faire ressortir l information essentielle et donner a chaque interaction une raison d etre.
-      </p>
-      <p>
-        Mes projets publics montrent cette progression: des bases HTML CSS jusqu a des interfaces
-        plus denses, des experiences narratives et un prototype mobile pense comme un vrai produit.
-      </p>
+      <p>{{ content.intro.paragraphs[0] }}</p>
+      <p>{{ content.intro.paragraphs[1] }}</p>
     </div>
 
     <div class="principles">
@@ -113,8 +100,8 @@
 
   <section class="section timeline-section">
     <div class="section-heading narrow">
-      <p class="eyebrow">Parcours</p>
-      <h2>Le fil conducteur reste le meme: apprendre en fabriquant, puis rendre chaque projet plus lisible et plus utile que le precedent.</h2>
+      <p class="eyebrow">{{ content.timeline.eyebrow }}</p>
+      <h2>{{ content.timeline.title }}</h2>
     </div>
 
     <div class="timeline">
@@ -132,8 +119,8 @@
 
   <section class="section projects-section" id="projets">
     <div class="section-heading">
-      <p class="eyebrow">Selected work</p>
-      <h2>Une selection courte pour comprendre comment je passe d une idee a une interface concrete.</h2>
+      <p class="eyebrow">{{ content.projectsSection.eyebrow }}</p>
+      <h2>{{ content.projectsSection.title }}</h2>
     </div>
 
     <div class="projects-layout">
@@ -217,8 +204,8 @@
 
   <section class="section focus-section">
     <div class="section-heading narrow">
-      <p class="eyebrow">Axes de travail</p>
-      <h2>Le coeur de ce que je developpe aujourd hui: interface, logique front-end, produit et fondamentaux techniques.</h2>
+      <p class="eyebrow">{{ content.focusSection.eyebrow }}</p>
+      <h2>{{ content.focusSection.title }}</h2>
     </div>
 
     <div class="focus-grid">
@@ -234,31 +221,22 @@
   <section class="section cta-section" id="contact">
     <div class="cta-shell">
       <div class="cta-copy">
-        <p class="eyebrow">Contact</p>
-        <h2>Parlons d un stage, d une mission ou d un projet a construire.</h2>
-        <p>
-          Le portfolio renvoie vers GitHub, mais vous pouvez aussi me contacter directement
-          depuis cette page ou telecharger un CV de synthese. Les messages sont transmis a
-          <a class="cta-email" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>.
-        </p>
+        <p class="eyebrow">{{ content.contactSection.eyebrow }}</p>
+        <h2>{{ content.contactSection.title }}</h2>
+        <p>{{ content.contactSection.text }}</p>
 
         <div class="contact-links">
-          <a class="button button-primary" [href]="cvUrl" download>
-            Telecharger le CV
-          </a>
+          <a class="button button-primary" [href]="cvUrl" download>{{ content.contactSection.cvCta }}</a>
           <a
             class="button button-secondary"
             href="https://github.com/magaly68"
             target="_blank"
             rel="noreferrer"
           >
-            Aller sur GitHub
+            {{ content.contactSection.githubCta }}
           </a>
-          <a
-            class="button button-secondary"
-            [href]="'mailto:' + contactEmail"
-          >
-            Envoyer un email direct
+          <a class="button button-secondary" [href]="'mailto:' + contactEmail">
+            {{ content.contactSection.emailCta }}
           </a>
         </div>
       </div>
@@ -268,22 +246,22 @@
         (submit)="submitContactForm($event, name.value, email.value, subject.value, message.value, honey.value)"
       >
         <label class="field">
-          <span>Nom</span>
+          <span>{{ content.formLabels.name }}</span>
           <input #name type="text" name="name" autocomplete="name" required />
         </label>
 
         <label class="field">
-          <span>Email</span>
+          <span>{{ content.formLabels.email }}</span>
           <input #email type="email" name="email" autocomplete="email" required />
         </label>
 
         <label class="field">
-          <span>Sujet</span>
+          <span>{{ content.formLabels.subject }}</span>
           <input #subject type="text" name="subject" required />
         </label>
 
         <label class="field">
-          <span>Message</span>
+          <span>{{ content.formLabels.message }}</span>
           <textarea #message name="message" rows="6" required></textarea>
         </label>
 
@@ -291,9 +269,9 @@
 
         <button class="button button-primary submit-button" type="submit" [disabled]="isSubmitting()">
           @if (isSubmitting()) {
-            Envoi en cours...
+            {{ content.formLabels.pending }}
           } @else {
-            Envoyer le message
+            {{ content.formLabels.submit }}
           }
         </button>
 

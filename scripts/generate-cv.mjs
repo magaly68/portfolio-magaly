@@ -13,7 +13,7 @@ const doc = new PDFDocument({
   info: {
     Title: 'Magaly Wintzer - CV',
     Author: 'Codex',
-    Subject: 'CV synthese de Magaly Wintzer'
+    Subject: 'CV de synthèse de Magaly Wintzer'
   }
 });
 
@@ -23,8 +23,7 @@ const colors = {
   ink: '#171411',
   muted: '#5f5a54',
   accent: '#124433',
-  line: '#d8d0c6',
-  chip: '#eef7f2'
+  line: '#d8d0c6'
 };
 
 function heading(text) {
@@ -60,7 +59,7 @@ function bullet(text) {
     .fillColor(colors.accent)
     .font('Helvetica-Bold')
     .fontSize(10)
-    .text('•', doc.page.margins.left, doc.y + 1);
+    .text('-', doc.page.margins.left, doc.y + 1);
 
   doc
     .fillColor(colors.muted)
@@ -102,24 +101,24 @@ doc.moveDown(5.2);
 
 heading('Profil');
 body(
-  "Developpeuse front-end en progression, j aime concevoir des interfaces lisibles, utiles et rassurantes. Mon travail part souvent d un besoin concret: clarifier une action, rendre un ecran plus naturel a parcourir et transformer une idee en prototype coherent."
+  "Développeuse front-end en progression, j'aime concevoir des interfaces lisibles, utiles et rassurantes. Mon travail part souvent d'un besoin concret : clarifier une action, rendre un écran plus naturel à parcourir et transformer une idée en prototype cohérent."
 );
 
-heading('Competences');
+heading('Compétences');
 bullet('HTML, CSS, responsive design et structuration de pages web.');
-bullet('JavaScript pour rendre une interface dynamique et exploiter des donnees.');
+bullet("JavaScript pour rendre une interface dynamique et exploiter des données.");
 bullet('Angular pour construire un site moderne, composant par composant.');
-bullet('Prototypage UI, parcours utilisateur, hierarchie visuelle et etats d interface.');
-bullet('Bases Linux, reseau et premiers programmes en C.');
+bullet("Prototypage UI, parcours utilisateur, hiérarchie visuelle et états d'interface.");
+bullet('Bases Linux, réseau et premiers programmes en C.');
 
-heading('Projets selectionnes');
+heading('Projets sélectionnés');
 doc
   .fillColor(colors.ink)
   .font('Helvetica-Bold')
   .fontSize(11)
   .text('EpiGuard');
 body(
-  "Prototype mobile centre sur la surveillance active, le journal des crises, l urgence et la connexion montre. Le projet montre une logique produit complete et une attention forte a la lisibilite."
+  "Prototype mobile centré sur la surveillance active, le journal des crises, l'urgence et la connexion montre. Le projet montre une logique produit complète et une attention forte à la lisibilité."
 );
 doc.moveDown(0.5);
 
@@ -127,9 +126,9 @@ doc
   .fillColor(colors.ink)
   .font('Helvetica-Bold')
   .fontSize(11)
-  .text('7697016-Front-End.1');
+  .text('Front-End.1');
 body(
-  "Projet de front-end dynamique avec HTML, CSS, JavaScript et donnees JSON. Une etape importante pour passer d une page statique a une interface plus vivante."
+  "Projet de front-end dynamique avec HTML, CSS, JavaScript et données JSON. Une étape importante pour passer d'une page statique à une interface plus vivante."
 );
 doc.moveDown(0.5);
 
@@ -139,7 +138,7 @@ doc
   .fontSize(11)
   .text('Histoire interactive');
 body(
-  "Experience realisee avec Twine autour d une narration a embranchements. Ce projet developpe le sens du rythme, du choix utilisateur et de la structure interactive."
+  "Expérience réalisée avec Twine autour d'une narration à embranchements. Ce projet développe le sens du rythme, du choix utilisateur et de la structure interactive."
 );
 doc.moveDown(0.5);
 
@@ -147,21 +146,21 @@ doc
   .fillColor(colors.ink)
   .font('Helvetica-Bold')
   .fontSize(11)
-  .text('Project Linux');
+  .text('Projet Linux');
 body(
-  "Depot plus technique avec Linux, modele OSI et premiers pas en C. Il montre une curiosite qui depasse l interface pure et une envie de comprendre le socle technique."
+  "Dépôt plus technique avec Linux, modèle OSI et premiers pas en C. Il montre une curiosité qui dépasse l'interface pure et une envie de comprendre le socle technique."
 );
 
 heading('Approche');
-bullet('Chercher la clarte avant la decoration.');
-bullet('Faire respirer une page avec une bonne hierarchie et peu de bruit.');
+bullet('Chercher la clarté avant la décoration.');
+bullet('Faire respirer une page avec une bonne hiérarchie et peu de bruit.');
 bullet('Utiliser le mouvement comme retour visuel, pas comme effet gratuit.');
-bullet('Apprendre par projets reels et iterer vite.');
+bullet('Apprendre par projets réels et itérer vite.');
 
 heading('Liens');
-bullet('Portfolio en ligne: https://portfolio-magaly.vercel.app');
-bullet('GitHub: https://github.com/magaly68');
-bullet('Email: wintzer.magaly@gmail.com');
+bullet('Portfolio en ligne : https://portfolio-magaly.vercel.app');
+bullet('GitHub : https://github.com/magaly68');
+bullet('Email : wintzer.magaly@gmail.com');
 
 doc.end();
 
