@@ -15,16 +15,20 @@
   <section class="hero">
     <div class="hero-copy">
       <p class="eyebrow">Portfolio 2026 / Angular</p>
-      <p class="brand-line">Magaly / magaly68</p>
-      <h1>Des interfaces calmes, utiles et plus vivantes qu un simple template.</h1>
+      <p class="brand-line">{{ fullName }} / magaly68</p>
+      <h1>Je construis des interfaces front-end sobres, utiles et faites pour etre comprises vite.</h1>
       <p class="hero-text">
-        A partir du profil public GitHub <strong>magaly68</strong> et du projet
-        <strong>EpiGuard</strong>, ce portfolio met en avant un parcours front-end en
-        construction: HTML, CSS, JavaScript, prototypes mobiles et curiosite systeme.
+        Je m appelle <strong>{{ fullName }}</strong>. A partir de mon profil GitHub public
+        <strong>magaly68</strong> et du projet <strong>EpiGuard</strong>, ce portfolio raconte
+        un parcours en construction entre HTML, CSS, JavaScript, Angular, prototypes mobiles et
+        curiosite technique.
       </p>
 
       <div class="hero-actions">
         <a class="button button-primary" href="#projets">Voir les projets</a>
+        <a class="button button-secondary" [href]="cvUrl" download>
+          Telecharger le CV
+        </a>
         <a
           class="button button-secondary"
           href="https://github.com/magaly68"
@@ -81,19 +85,18 @@
 
   <section class="section section-intro" id="parcours">
     <div class="section-heading">
-      <p class="eyebrow">Visual thesis</p>
-      <h2>Une direction editoriale claire, avec un hero sombre, un accent menthe et beaucoup d air.</h2>
+      <p class="eyebrow">Profil</p>
+      <h2>Un parcours qui avance par projets, avec une vraie attention pour la lisibilite, l usage et le rythme d une interface.</h2>
     </div>
 
     <div class="intro-grid">
       <p>
-        Le parti pris visuel n est pas celui d une grille de cartes SaaS. La page commence
-        comme une affiche: un nom fort, une intention lisible et un visuel produit qui porte
-        vraiment le recit.
+        Je travaille surtout le front-end comme un espace de clarte. J aime organiser une page,
+        faire ressortir l information essentielle et donner a chaque interaction une raison d etre.
       </p>
       <p>
-        Le reste de l interface reste volontairement sobre. Chaque section a un seul role:
-        situer le parcours, montrer les projets, puis ouvrir une conversation.
+        Mes projets publics montrent cette progression: des bases HTML CSS jusqu a des interfaces
+        plus denses, des experiences narratives et un prototype mobile pense comme un vrai produit.
       </p>
     </div>
 
@@ -110,8 +113,8 @@
 
   <section class="section timeline-section">
     <div class="section-heading narrow">
-      <p class="eyebrow">Content plan</p>
-      <h2>Un parcours qui part des bases web, passe par l interactivite et avance vers des concepts plus produit.</h2>
+      <p class="eyebrow">Parcours</p>
+      <h2>Le fil conducteur reste le meme: apprendre en fabriquant, puis rendre chaque projet plus lisible et plus utile que le precedent.</h2>
     </div>
 
     <div class="timeline">
@@ -130,7 +133,7 @@
   <section class="section projects-section" id="projets">
     <div class="section-heading">
       <p class="eyebrow">Selected work</p>
-      <h2>Quelques projets pour lire le parcours sans parcourir tout GitHub.</h2>
+      <h2>Une selection courte pour comprendre comment je passe d une idee a une interface concrete.</h2>
     </div>
 
     <div class="projects-layout">
@@ -214,8 +217,8 @@
 
   <section class="section focus-section">
     <div class="section-heading narrow">
-      <p class="eyebrow">Ce que je travaille</p>
-      <h2>Un socle utile pour la suite: front-end, logique, produit et fondamentaux techniques.</h2>
+      <p class="eyebrow">Axes de travail</p>
+      <h2>Le coeur de ce que je developpe aujourd hui: interface, logique front-end, produit et fondamentaux techniques.</h2>
     </div>
 
     <div class="focus-grid">
@@ -232,14 +235,17 @@
     <div class="cta-shell">
       <div class="cta-copy">
         <p class="eyebrow">Contact</p>
-        <h2>Parlons d un stage, d un projet ou d une prochaine collaboration.</h2>
+        <h2>Parlons d un stage, d une mission ou d un projet a construire.</h2>
         <p>
-          Le portfolio renvoie vers GitHub, mais vous pouvez maintenant m ecrire directement
-          depuis cette page. Les messages sont transmis a
+          Le portfolio renvoie vers GitHub, mais vous pouvez aussi me contacter directement
+          depuis cette page ou telecharger un CV de synthese. Les messages sont transmis a
           <a class="cta-email" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>.
         </p>
 
         <div class="contact-links">
+          <a class="button button-primary" [href]="cvUrl" download>
+            Telecharger le CV
+          </a>
           <a
             class="button button-secondary"
             href="https://github.com/magaly68"

@@ -43,29 +43,32 @@ type Project = {
 export class App {
   readonly scrollProgress = signal(0);
   readonly selectedProjectId = signal('epiguard');
+  readonly fullName = 'Magaly Wintzer';
   readonly contactEmail = 'wintzer.magaly@gmail.com';
+  readonly portfolioUrl = 'https://portfolio-magaly.vercel.app';
+  readonly cvUrl = '/documents/Magaly-Wintzer-CV.pdf';
   readonly isSubmitting = signal(false);
   readonly submitState = signal<'idle' | 'success' | 'error'>('idle');
   readonly submitMessage = signal('');
 
   readonly metrics: Metric[] = [
     { value: '20', label: 'depots publics sur GitHub' },
-    { value: '4', label: 'axes montres dans ce portfolio' },
-    { value: '1', label: 'prototype mobile fort avec EpiGuard' }
+    { value: '4', label: 'projets selectionnes pour raconter le parcours' },
+    { value: '1', label: 'portfolio Angular mis en ligne sur Vercel' }
   ];
 
   readonly principles: Principle[] = [
     {
-      title: 'Clarte avant decoration',
-      text: 'Je privilegie des interfaces lisibles, un rythme net et une hierarchie que l on comprend en quelques secondes.'
+      title: 'Des interfaces qui respirent',
+      text: 'Je privilegie des ecrans lisibles, des sections qui ont chacune un role clair et une hierarchie qu on comprend vite.'
     },
     {
-      title: 'Front-end vivant',
-      text: 'J aime quand le mouvement sert la comprehension: etats, transitions, retour visuel et interactions utiles.'
+      title: 'Un mouvement utile',
+      text: 'J aime quand le front-end repond visuellement sans bruit: etats, transitions, feedback et interactions qui guident.'
     },
     {
-      title: 'Apprentissage concret',
-      text: 'Mes projets publics montrent une progression reelle entre HTML CSS, JavaScript, narration interactive, Linux et C.'
+      title: 'Apprendre par projets reels',
+      text: 'Mes depots publics montrent une progression concrete entre HTML CSS, JavaScript, narration interactive, Linux et C.'
     }
   ];
 
@@ -73,37 +76,37 @@ export class App {
     {
       phase: 'Phase 01',
       title: 'Recits interactifs',
-      text: 'Avec histoire_interactive, j ai explore Twine pour raconter une histoire a embranchements et transformer un outil narratif en experience web.'
+      text: 'Avec histoire_interactive, j ai travaille la logique de choix, le rythme et la narration a embranchements dans une experience web.'
     },
     {
       phase: 'Phase 02',
       title: 'Bases front-end solides',
-      text: 'Les depots projet_html_css et 7697016-Front-End.1 montrent un travail autour du HTML, du CSS et des pages web dynamiques en JavaScript.'
+      text: 'Les depots projet_html_css et 7697016-Front-End.1 montrent la transition du statique vers des pages plus dynamiques avec JavaScript.'
     },
     {
       phase: 'Phase 03',
       title: 'Culture produit',
-      text: 'EpiGuard marque une etape plus produit: surveillance, journal, urgence, profil medical et logique d usage mobile.'
+      text: 'EpiGuard marque une etape plus produit avec une logique mobile complete: surveillance, journal, urgence, montre connectee et profil.'
     },
     {
       phase: 'Phase 04',
       title: 'Ouverture technique',
-      text: 'project_linux documente le modele OSI, un TP Linux et un premier projet perso en C pour elargir la pratique au dela du navigateur.'
+      text: 'project_linux elargit la pratique au dela du navigateur avec Linux, reseau et premiers pas en C.'
     }
   ];
 
   readonly focusAreas: FocusArea[] = [
     {
-      title: 'Interfaces front-end',
-      text: 'Structurer une page, poser une bonne hierarchie et rendre l interaction plus naturelle.'
+      title: 'Angular et interfaces',
+      text: 'Structurer une page, decouper une interface et donner une vraie presence visuelle a un projet front-end.'
     },
     {
       title: 'JavaScript concret',
-      text: 'Passer du statique au dynamique avec des filtres, de la logique d affichage et des donnees externes.'
+      text: 'Passer du statique au dynamique avec des filtres, de la logique d affichage et des donnees qui racontent quelque chose.'
     },
     {
       title: 'Prototypes a usage reel',
-      text: 'Imaginer des ecrans qui repondent a une situation precise, ici la surveillance et l urgence.'
+      text: 'Imaginer des ecrans qui repondent a une situation precise, ici la surveillance, l urgence et la reassurance.'
     },
     {
       title: 'Fondamentaux systeme',
@@ -116,9 +119,9 @@ export class App {
       id: 'epiguard',
       kicker: 'Prototype mobile',
       title: 'EpiGuard',
-      summary: 'Un concept d application mobile centre sur la surveillance active, le journal des crises et l urgence.',
+      summary: 'Un concept d application mobile centre sur la surveillance active, le journal des crises et les gestes d urgence.',
       detail:
-        'Le projet articule un etat de monitoring fort, une navigation simple et des ecrans qui rassurent sans noyer l utilisateur.',
+        'Le projet articule un etat de monitoring tres lisible, une navigation simple et des ecrans qui rassurent sans surcharger.',
       outcomes: [
         'Ecran de surveillance avec etat actif immediat',
         'Journal filtrable et export medical',
@@ -139,7 +142,7 @@ export class App {
       id: 'frontend',
       kicker: 'Front-end dynamique',
       title: '7697016-Front-End.1',
-      summary: 'Une base de travail OpenClassrooms pour creer des pages web dynamiques avec JavaScript.',
+      summary: 'Une base de travail OpenClassrooms pour construire une page web dynamique en JavaScript.',
       detail:
         'Le depot montre une progression vers un front-end plus interactif avec HTML, CSS, fichiers JSON et scripts JavaScript dedies.',
       outcomes: [
