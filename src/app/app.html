@@ -1,0 +1,302 @@
+<main class="page" id="top">
+  <header class="topbar">
+    <a class="brand" href="#top">
+      <span class="brand-mark"></span>
+      <span>Magaly</span>
+    </a>
+
+    <nav class="topnav" aria-label="Navigation principale">
+      <a href="#parcours">Parcours</a>
+      <a href="#projets">Projets</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Portfolio 2026 / Angular</p>
+      <p class="brand-line">Magaly / magaly68</p>
+      <h1>Des interfaces calmes, utiles et plus vivantes qu un simple template.</h1>
+      <p class="hero-text">
+        A partir du profil public GitHub <strong>magaly68</strong> et du projet
+        <strong>EpiGuard</strong>, ce portfolio met en avant un parcours front-end en
+        construction: HTML, CSS, JavaScript, prototypes mobiles et curiosite systeme.
+      </p>
+
+      <div class="hero-actions">
+        <a class="button button-primary" href="#projets">Voir les projets</a>
+        <a
+          class="button button-secondary"
+          href="https://github.com/magaly68"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Ouvrir GitHub
+        </a>
+      </div>
+
+      <ul class="metric-row" aria-label="Points cles">
+        @for (metric of metrics; track metric.label) {
+          <li>
+            <strong>{{ metric.value }}</strong>
+            <span>{{ metric.label }}</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="hero-visual" [style.transform]="heroVisualTransform()">
+      <div class="hero-halo" [style.transform]="haloTransform()"></div>
+
+      <figure class="portrait">
+        <img
+          src="https://avatars.githubusercontent.com/u/105367106?v=4"
+          alt="Photo de profil GitHub de Magaly"
+        />
+      </figure>
+
+      <figure class="phone phone-main">
+        <img
+          src="/projects/Screenshot_20260329_145746_EpiGuard.jpg"
+          alt="Capture EpiGuard avec surveillance active"
+        />
+      </figure>
+
+      <figure class="phone phone-side">
+        <img
+          src="/projects/Screenshot_20260329_145854_EpiGuard.jpg"
+          alt="Capture EpiGuard avec ecran urgence"
+        />
+      </figure>
+
+      <div class="signal-note">
+        <span class="signal-dot"></span>
+        <div>
+          <strong>Interaction thesis</strong>
+          <p>Reveal progressif, rail de projets interactif et hero qui reagit au scroll.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-intro" id="parcours">
+    <div class="section-heading">
+      <p class="eyebrow">Visual thesis</p>
+      <h2>Une direction editoriale claire, avec un hero sombre, un accent menthe et beaucoup d air.</h2>
+    </div>
+
+    <div class="intro-grid">
+      <p>
+        Le parti pris visuel n est pas celui d une grille de cartes SaaS. La page commence
+        comme une affiche: un nom fort, une intention lisible et un visuel produit qui porte
+        vraiment le recit.
+      </p>
+      <p>
+        Le reste de l interface reste volontairement sobre. Chaque section a un seul role:
+        situer le parcours, montrer les projets, puis ouvrir une conversation.
+      </p>
+    </div>
+
+    <div class="principles">
+      @for (principle of principles; track principle.title) {
+        <article class="principle">
+          <p class="principle-index">0{{ $index + 1 }}</p>
+          <h3>{{ principle.title }}</h3>
+          <p>{{ principle.text }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="section timeline-section">
+    <div class="section-heading narrow">
+      <p class="eyebrow">Content plan</p>
+      <h2>Un parcours qui part des bases web, passe par l interactivite et avance vers des concepts plus produit.</h2>
+    </div>
+
+    <div class="timeline">
+      @for (milestone of milestones; track milestone.phase) {
+        <article class="timeline-item">
+          <p class="timeline-phase">{{ milestone.phase }}</p>
+          <div>
+            <h3>{{ milestone.title }}</h3>
+            <p>{{ milestone.text }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="section projects-section" id="projets">
+    <div class="section-heading">
+      <p class="eyebrow">Selected work</p>
+      <h2>Quelques projets pour lire le parcours sans parcourir tout GitHub.</h2>
+    </div>
+
+    <div class="projects-layout">
+      <div class="project-rail" role="tablist" aria-label="Choix du projet">
+        @for (project of projects; track project.id) {
+          <button
+            class="project-trigger"
+            [class.is-active]="selectedProjectId() === project.id"
+            (click)="selectProject(project.id)"
+            type="button"
+          >
+            <span class="project-step">0{{ $index + 1 }}</span>
+            <span class="project-trigger-copy">
+              <strong>{{ project.title }}</strong>
+              <span>{{ project.kicker }}</span>
+            </span>
+          </button>
+        }
+      </div>
+
+      <article class="project-stage">
+        <div class="project-copy">
+          <p class="eyebrow">{{ selectedProject().kicker }}</p>
+          <h3>{{ selectedProject().title }}</h3>
+          <p class="project-summary">{{ selectedProject().summary }}</p>
+          <p class="project-detail">{{ selectedProject().detail }}</p>
+
+          <ul class="outcome-list">
+            @for (outcome of selectedProject().outcomes; track outcome) {
+              <li>{{ outcome }}</li>
+            }
+          </ul>
+
+          <ul class="stack-list" aria-label="Technologies et focus">
+            @for (item of selectedProject().stack; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+
+          <a
+            class="inline-link"
+            [href]="selectedProject().repo"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {{ selectedProject().repoLabel }}
+          </a>
+        </div>
+
+        <div class="project-visual" [attr.data-visual]="selectedProject().visualStyle">
+          @if (selectedProject().visualStyle === 'mobile') {
+            <div class="mobile-gallery">
+              @for (image of selectedProject().images; track image) {
+                <figure class="mobile-shot">
+                  <img [src]="image" [alt]="selectedProject().title + ' - capture'" loading="lazy" />
+                </figure>
+              }
+            </div>
+          } @else {
+            <div class="signal-board">
+              <p class="signal-code">repo://{{ selectedProject().id }}</p>
+              <div class="signal-lines">
+                @for (outcome of selectedProject().outcomes; track outcome) {
+                  <p>
+                    <span></span>
+                    {{ outcome }}
+                  </p>
+                }
+              </div>
+              <div class="signal-footer">
+                @for (item of selectedProject().stack; track item) {
+                  <small>{{ item }}</small>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section focus-section">
+    <div class="section-heading narrow">
+      <p class="eyebrow">Ce que je travaille</p>
+      <h2>Un socle utile pour la suite: front-end, logique, produit et fondamentaux techniques.</h2>
+    </div>
+
+    <div class="focus-grid">
+      @for (area of focusAreas; track area.title) {
+        <article class="focus-item">
+          <h3>{{ area.title }}</h3>
+          <p>{{ area.text }}</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="section cta-section" id="contact">
+    <div class="cta-shell">
+      <div class="cta-copy">
+        <p class="eyebrow">Contact</p>
+        <h2>Parlons d un stage, d un projet ou d une prochaine collaboration.</h2>
+        <p>
+          Le portfolio renvoie vers GitHub, mais vous pouvez maintenant m ecrire directement
+          depuis cette page. Les messages sont transmis a
+          <a class="cta-email" [href]="'mailto:' + contactEmail">{{ contactEmail }}</a>.
+        </p>
+
+        <div class="contact-links">
+          <a
+            class="button button-secondary"
+            href="https://github.com/magaly68"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Aller sur GitHub
+          </a>
+          <a
+            class="button button-secondary"
+            [href]="'mailto:' + contactEmail"
+          >
+            Envoyer un email direct
+          </a>
+        </div>
+      </div>
+
+      <form
+        class="contact-form"
+        (submit)="submitContactForm($event, name.value, email.value, subject.value, message.value, honey.value)"
+      >
+        <label class="field">
+          <span>Nom</span>
+          <input #name type="text" name="name" autocomplete="name" required />
+        </label>
+
+        <label class="field">
+          <span>Email</span>
+          <input #email type="email" name="email" autocomplete="email" required />
+        </label>
+
+        <label class="field">
+          <span>Sujet</span>
+          <input #subject type="text" name="subject" required />
+        </label>
+
+        <label class="field">
+          <span>Message</span>
+          <textarea #message name="message" rows="6" required></textarea>
+        </label>
+
+        <input #honey class="honey-field" type="text" name="_honey" tabindex="-1" autocomplete="off" />
+
+        <button class="button button-primary submit-button" type="submit" [disabled]="isSubmitting()">
+          @if (isSubmitting()) {
+            Envoi en cours...
+          } @else {
+            Envoyer le message
+          }
+        </button>
+
+        @if (submitState() !== 'idle') {
+          <p class="form-feedback" [class.is-success]="submitState() === 'success'">
+            {{ submitMessage() }}
+          </p>
+        }
+      </form>
+    </div>
+  </section>
+</main>
