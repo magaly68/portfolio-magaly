@@ -1,200 +1,229 @@
-<main class="page" id="top">
-  <header class="topbar">
-    <a class="brand" href="#top">
-      <span class="brand-mark"></span>
-      <span>Magaly</span>
+<a class="skip-link" href="#main-content">Aller au contenu principal</a>
+
+<nav class="site-nav" aria-label="Navigation principale">
+  <div class="container nav-inner">
+    <a class="brand" href="#top" aria-label="Retour en haut de la page">
+      {{ content.fullName }}
     </a>
 
-    <nav class="topnav" aria-label="Navigation principale">
-      <a href="#parcours">Parcours</a>
-      <a href="#projets">Projets</a>
+    <div class="nav-links">
+      <a href="#about">À propos</a>
+      <a href="#journey">Approche</a>
+      <a href="#projects">Projets</a>
       <a href="#contact">Contact</a>
-    </nav>
-  </header>
+    </div>
+  </div>
+</nav>
 
-  <section class="hero">
+<header id="top" class="hero" aria-labelledby="hero-title">
+  <div class="container hero-grid">
     <div class="hero-copy">
       <p class="eyebrow">{{ content.hero.eyebrow }}</p>
-      <p class="brand-line">{{ content.fullName }} / {{ content.handle }}</p>
-      <h1>{{ content.hero.title }}</h1>
+      <p class="identity">{{ content.fullName }} <span>/ {{ content.handle }}</span></p>
+
+      <h1 id="hero-title">{{ content.hero.title }}</h1>
       <p class="hero-text">{{ content.hero.text }}</p>
 
-      <div class="hero-actions">
-        <a class="button button-primary" href="#projets">{{ content.hero.projectsCta }}</a>
-        <a class="button button-secondary" [href]="cvUrl" download>{{ content.hero.cvCta }}</a>
+      <div class="hero-actions" aria-label="Actions principales">
+        <a class="button button-primary" href="#projects">
+          {{ content.hero.projectsCta }}
+        </a>
+
         <a
           class="button button-secondary"
-          href="https://github.com/magaly68"
+          [href]="content.cvUrl"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
+        >
+          {{ content.hero.cvCta }}
+        </a>
+
+        <a
+          class="button button-secondary"
+          [href]="'https://github.com/' + content.handle"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {{ content.hero.githubCta }}
         </a>
       </div>
 
-      <ul class="metric-row" aria-label="Points clés">
+      <ul class="metrics-list" aria-label="Points clés">
         @for (metric of metrics; track metric.label) {
-          <li>
-            <strong>{{ metric.value }}</strong>
-            <span>{{ metric.label }}</span>
+          <li class="metric-card">
+            <span class="metric-value">{{ metric.value }}</span>
+            <span class="metric-label">{{ metric.label }}</span>
           </li>
         }
       </ul>
     </div>
 
-    <div class="hero-visual" [style.transform]="heroVisualTransform()">
-      <div class="hero-halo" [style.transform]="haloTransform()"></div>
-
-      <figure class="portrait">
+    <aside class="hero-panel" aria-labelledby="hero-panel-title">
+      <div class="profile-card">
         <img
-          src="https://avatars.githubusercontent.com/u/105367106?v=4"
+          class="profile-image"
+          src="https://avatars.githubusercontent.com/u/102856240?v=4"
           alt="Photo de profil GitHub de Magaly"
         />
-      </figure>
 
-      <figure class="phone phone-main">
-        <img
-          src="/projects/Screenshot_20260329_145746_EpiGuard.jpg"
-          alt="Capture EpiGuard avec surveillance active"
-        />
-      </figure>
-
-      <figure class="phone phone-side">
-        <img
-          src="/projects/Screenshot_20260329_145854_EpiGuard.jpg"
-          alt="Capture EpiGuard avec ecran urgence"
-        />
-      </figure>
-
-      <div class="signal-note">
-        <span class="signal-dot"></span>
-        <div>
-          <strong>{{ content.hero.noteTitle }}</strong>
+        <div class="profile-copy">
+          <h2 id="hero-panel-title">{{ content.hero.noteTitle }}</h2>
           <p>{{ content.hero.noteText }}</p>
         </div>
+      </div>
+
+      @if (projects[0].images.length >= 2) {
+        <div class="hero-preview" aria-label="Aperçu du projet EpiGuard">
+          <img
+            [src]="projects[0].images[0]"
+            alt="Capture d’écran de l’application EpiGuard avec écran de surveillance"
+          />
+          <img
+            [src]="projects[0].images[1]"
+            alt="Capture d’écran de l’application EpiGuard avec écran d’urgence"
+          />
+        </div>
+      }
+    </aside>
+  </div>
+</header>
+
+<main id="main-content">
+  <section id="about" class="section intro" aria-labelledby="about-title">
+    <div class="container">
+      <p class="eyebrow">{{ content.intro.eyebrow }}</p>
+      <h2 id="about-title">{{ content.intro.title }}</h2>
+
+      <div class="intro-copy">
+        <p>{{ content.intro.paragraphs[0] }}</p>
+        <p>{{ content.intro.paragraphs[1] }}</p>
+      </div>
+
+      <div class="principles-grid" role="list" aria-label="Principes de travail">
+        @for (principle of principles; track principle.title) {
+          <article class="info-card" role="listitem">
+            <p class="card-index">0{{ $index + 1 }}</p>
+            <h3>{{ principle.title }}</h3>
+            <p>{{ principle.text }}</p>
+          </article>
+        }
       </div>
     </div>
   </section>
 
-  <section class="section section-intro" id="parcours">
-    <div class="section-heading">
-      <p class="eyebrow">{{ content.intro.eyebrow }}</p>
-      <h2>{{ content.intro.title }}</h2>
-    </div>
-
-    <div class="intro-grid">
-      <p>{{ content.intro.paragraphs[0] }}</p>
-      <p>{{ content.intro.paragraphs[1] }}</p>
-    </div>
-
-    <div class="principles">
-      @for (principle of principles; track principle.title) {
-        <article class="principle">
-          <p class="principle-index">0{{ $index + 1 }}</p>
-          <h3>{{ principle.title }}</h3>
-          <p>{{ principle.text }}</p>
-        </article>
-      }
-    </div>
-  </section>
-
-  <section class="section timeline-section">
-    <div class="section-heading narrow">
+  <section id="journey" class="section timeline-section" aria-labelledby="journey-title">
+    <div class="container">
       <p class="eyebrow">{{ content.timeline.eyebrow }}</p>
-      <h2>{{ content.timeline.title }}</h2>
-    </div>
+      <h2 id="journey-title">{{ content.timeline.title }}</h2>
 
-    <div class="timeline">
-      @for (milestone of milestones; track milestone.phase) {
-        <article class="timeline-item">
-          <p class="timeline-phase">{{ milestone.phase }}</p>
-          <div>
-            <h3>{{ milestone.title }}</h3>
-            <p>{{ milestone.text }}</p>
-          </div>
-        </article>
-      }
+      <div class="timeline-list" role="list" aria-label="Étapes du parcours">
+        @for (milestone of milestones; track milestone.phase) {
+          <article class="timeline-card" role="listitem">
+            <p class="timeline-phase">{{ milestone.phase }}</p>
+            <div class="timeline-copy">
+              <h3>{{ milestone.title }}</h3>
+              <p>{{ milestone.text }}</p>
+            </div>
+          </article>
+        }
+      </div>
     </div>
   </section>
 
-  <section class="section projects-section" id="projets">
-    <div class="section-heading">
+  <section id="projects" class="section projects-section" aria-labelledby="projects-title">
+    <div class="container">
       <p class="eyebrow">{{ content.projectsSection.eyebrow }}</p>
-      <h2>{{ content.projectsSection.title }}</h2>
-    </div>
+      <h2 id="projects-title">{{ content.projectsSection.title }}</h2>
 
-    <div class="projects-layout">
-      <div class="project-rail" role="tablist" aria-label="Choix du projet">
+      <div
+        class="project-tabs"
+        role="tablist"
+        aria-label="Sélection des projets"
+      >
         @for (project of projects; track project.id) {
           <button
-            class="project-trigger"
-            [class.is-active]="selectedProjectId() === project.id"
-            (click)="selectProject(project.id)"
             type="button"
+            class="project-tab"
+            [class.active]="selectedProject().id === project.id"
+            [attr.aria-selected]="selectedProject().id === project.id"
+            [attr.aria-controls]="'panel-' + project.id"
+            [id]="'tab-' + project.id"
+            (click)="selectProject(project.id)"
           >
-            <span class="project-step">0{{ $index + 1 }}</span>
-            <span class="project-trigger-copy">
-              <strong>{{ project.title }}</strong>
-              <span>{{ project.kicker }}</span>
+            <span class="tab-index">0{{ $index + 1 }}</span>
+            <span class="tab-copy">
+              <span class="tab-title">{{ project.title }}</span>
+              <span class="tab-kicker">{{ project.kicker }}</span>
             </span>
           </button>
         }
       </div>
 
-      <article class="project-stage">
+      <article
+        class="project-detail"
+        role="tabpanel"
+        [id]="'panel-' + selectedProject().id"
+        [attr.aria-labelledby]="'tab-' + selectedProject().id"
+      >
         <div class="project-copy">
           <p class="eyebrow">{{ selectedProject().kicker }}</p>
           <h3>{{ selectedProject().title }}</h3>
           <p class="project-summary">{{ selectedProject().summary }}</p>
-          <p class="project-detail">{{ selectedProject().detail }}</p>
+          <p>{{ selectedProject().detail }}</p>
 
-          <ul class="outcome-list">
-            @for (outcome of selectedProject().outcomes; track outcome) {
-              <li>{{ outcome }}</li>
-            }
-          </ul>
+          <div class="project-block">
+            <h4>Points clés</h4>
+            <ul>
+              @for (outcome of selectedProject().outcomes; track outcome) {
+                <li>{{ outcome }}</li>
+              }
+            </ul>
+          </div>
 
-          <ul class="stack-list" aria-label="Technologies et focus">
-            @for (item of selectedProject().stack; track item) {
-              <li>{{ item }}</li>
-            }
-          </ul>
+          <div class="project-block">
+            <h4>Technologies / axes</h4>
+            <ul class="tag-list" aria-label="Technologies et axes du projet">
+              @for (item of selectedProject().stack; track item) {
+                <li class="tag">{{ item }}</li>
+              }
+            </ul>
+          </div>
 
           <a
-            class="inline-link"
+            class="button button-secondary"
             [href]="selectedProject().repo"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             {{ selectedProject().repoLabel }}
           </a>
         </div>
 
-        <div class="project-visual" [attr.data-visual]="selectedProject().visualStyle">
+        <div class="project-visual">
           @if (selectedProject().visualStyle === 'mobile') {
-            <div class="mobile-gallery">
+            <div class="mobile-gallery" aria-label="Captures du projet sélectionné">
               @for (image of selectedProject().images; track image) {
-                <figure class="mobile-shot">
-                  <img [src]="image" [alt]="selectedProject().title + ' - capture'" loading="lazy" />
-                </figure>
+                <img
+                  [src]="image"
+                  [alt]="'Capture du projet ' + selectedProject().title"
+                />
               }
             </div>
           } @else {
-            <div class="signal-board">
-              <p class="signal-code">repo://{{ selectedProject().id }}</p>
-              <div class="signal-lines">
+            <div class="placeholder-visual" aria-label="Résumé du projet sélectionné">
+              <p class="placeholder-repo">repo://{{ selectedProject().id }}</p>
+
+              <div class="placeholder-list">
                 @for (outcome of selectedProject().outcomes; track outcome) {
-                  <p>
-                    <span></span>
-                    {{ outcome }}
-                  </p>
+                  <p>{{ outcome }}</p>
                 }
               </div>
-              <div class="signal-footer">
+
+              <ul class="tag-list" aria-label="Technologies du projet">
                 @for (item of selectedProject().stack; track item) {
-                  <small>{{ item }}</small>
+                  <li class="tag">{{ item }}</li>
                 }
-              </div>
+              </ul>
             </div>
           }
         </div>
@@ -202,40 +231,49 @@
     </div>
   </section>
 
-  <section class="section focus-section">
-    <div class="section-heading narrow">
+  <section class="section focus-section" aria-labelledby="focus-title">
+    <div class="container">
       <p class="eyebrow">{{ content.focusSection.eyebrow }}</p>
-      <h2>{{ content.focusSection.title }}</h2>
-    </div>
+      <h2 id="focus-title">{{ content.focusSection.title }}</h2>
 
-    <div class="focus-grid">
-      @for (area of focusAreas; track area.title) {
-        <article class="focus-item">
-          <h3>{{ area.title }}</h3>
-          <p>{{ area.text }}</p>
-        </article>
-      }
+      <div class="focus-grid" role="list" aria-label="Axes de travail">
+        @for (area of focusAreas; track area.title) {
+          <article class="info-card" role="listitem">
+            <h3>{{ area.title }}</h3>
+            <p>{{ area.text }}</p>
+          </article>
+        }
+      </div>
     </div>
   </section>
 
-  <section class="section cta-section" id="contact">
-    <div class="cta-shell">
-      <div class="cta-copy">
+  <section id="contact" class="section contact-section" aria-labelledby="contact-title">
+    <div class="container contact-grid">
+      <div class="contact-copy">
         <p class="eyebrow">{{ content.contactSection.eyebrow }}</p>
-        <h2>{{ content.contactSection.title }}</h2>
+        <h2 id="contact-title">{{ content.contactSection.title }}</h2>
         <p>{{ content.contactSection.text }}</p>
 
-        <div class="contact-links">
-          <a class="button button-primary" [href]="cvUrl" download>{{ content.contactSection.cvCta }}</a>
+        <div class="contact-actions" aria-label="Liens de contact">
           <a
             class="button button-secondary"
-            href="https://github.com/magaly68"
+            [href]="content.cvUrl"
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
+          >
+            {{ content.contactSection.cvCta }}
+          </a>
+
+          <a
+            class="button button-secondary"
+            [href]="'https://github.com/' + content.handle"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {{ content.contactSection.githubCta }}
           </a>
-          <a class="button button-secondary" [href]="'mailto:' + contactEmail">
+
+          <a class="button button-primary" [href]="'mailto:' + content.contactEmail">
             {{ content.contactSection.emailCta }}
           </a>
         </div>
@@ -243,31 +281,63 @@
 
       <form
         class="contact-form"
-        (submit)="submitContactForm($event, name.value, email.value, subject.value, message.value, honey.value)"
+        (ngSubmit)="sendMessage()"
+        #contactForm="ngForm"
+        aria-describedby="contact-form-note"
       >
-        <label class="field">
-          <span>{{ content.formLabels.name }}</span>
-          <input #name type="text" name="name" autocomplete="name" required />
-        </label>
+        <p id="contact-form-note" class="visually-hidden">
+          Tous les champs sont requis avant l’envoi du formulaire.
+        </p>
 
-        <label class="field">
-          <span>{{ content.formLabels.email }}</span>
-          <input #email type="email" name="email" autocomplete="email" required />
-        </label>
+        <div class="form-field">
+          <label for="name">{{ content.formLabels.name }}</label>
+          <input
+            id="name"
+            name="name"
+            type="text"
+            required
+            [(ngModel)]="formData.name"
+          />
+        </div>
 
-        <label class="field">
-          <span>{{ content.formLabels.subject }}</span>
-          <input #subject type="text" name="subject" required />
-        </label>
+        <div class="form-field">
+          <label for="email">{{ content.formLabels.email }}</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            required
+            [(ngModel)]="formData.email"
+          />
+        </div>
 
-        <label class="field">
-          <span>{{ content.formLabels.message }}</span>
-          <textarea #message name="message" rows="6" required></textarea>
-        </label>
+        <div class="form-field">
+          <label for="subject">{{ content.formLabels.subject }}</label>
+          <input
+            id="subject"
+            name="subject"
+            type="text"
+            required
+            [(ngModel)]="formData.subject"
+          />
+        </div>
 
-        <input #honey class="honey-field" type="text" name="_honey" tabindex="-1" autocomplete="off" />
+        <div class="form-field">
+          <label for="message">{{ content.formLabels.message }}</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="6"
+            required
+            [(ngModel)]="formData.message"
+          ></textarea>
+        </div>
 
-        <button class="button button-primary submit-button" type="submit" [disabled]="isSubmitting()">
+        <button
+          class="button button-primary submit-button"
+          type="submit"
+          [disabled]="isSubmitting()"
+        >
           @if (isSubmitting()) {
             {{ content.formLabels.pending }}
           } @else {
@@ -276,7 +346,12 @@
         </button>
 
         @if (submitState() !== 'idle') {
-          <p class="form-feedback" [class.is-success]="submitState() === 'success'">
+          <p
+            class="form-message"
+            [class.is-success]="submitState() === 'success'"
+            [class.is-error]="submitState() === 'error'"
+            aria-live="polite"
+          >
             {{ submitMessage() }}
           </p>
         }

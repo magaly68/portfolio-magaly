@@ -1,103 +1,110 @@
-import { Component, HostListener, computed, signal } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component, computed, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { finalize } from 'rxjs';
 import { portfolioContent } from './portfolio-content';
+
+type SubmitState = 'idle' | 'success' | 'error';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, FormsModule, HttpClientModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
-export class App {
-  readonly content = portfolioContent;
-  readonly scrollProgress = signal(0);
-  readonly selectedProjectId = signal('epiguard');
-  readonly fullName = this.content.fullName;
-  readonly contactEmail = this.content.contactEmail;
-  readonly portfolioUrl = this.content.portfolioUrl;
-  readonly cvUrl = this.content.cvUrl;
-  readonly isSubmitting = signal(false);
-  readonly submitState = signal<'idle' | 'success' | 'error'>('idle');
-  readonly submitMessage = signal('');
+export class AppComponent {
+  content = portfolioContent;
 
-  readonly metrics = this.content.metrics;
-  readonly principles = this.content.principles;
-  readonly milestones = this.content.milestones;
-  readonly focusAreas = this.content.focusAreas;
-  readonly projects = this.content.projects;
+  metrics = this.content.metrics;
+  principles = this.content.principles;
+  milestones = this.content.milestones;
+  projects = this.content.projects;
+  focusAreas = this.content.focusAreas;
 
-  readonly selectedProject = computed(
-    () => this.projects.find((project) => project.id === this.selectedProjectId()) ?? this.projects[0]
+  selectedProjectId = signal(this.projects[0]?.id ?? '');
+  selectedProject = computed(
+    () =>
+      this.projects.find((project) => project.id === this.selectedProjectId()) ??
+      this.projects[0]
   );
 
-  readonly heroVisualTransform = computed(
-    () => `translate3d(0, ${Math.min(this.scrollProgress(), 1.15) * 32}px, 0)`
-  );
+  formData = {
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  };
 
-  readonly haloTransform = computed(
-    () => `scale(${1 + Math.min(this.scrollProgress(), 1) * 0.08})`
-  );
+  private submitting = signal(false);
+  private submitStatus = signal<SubmitState>('idle');
+  private submitFeedback = signal('');
 
-  @HostListener('window:scroll')
-  onWindowScroll(): void {
-    const viewportHeight = window.innerHeight || 1;
-    this.scrollProgress.set(Math.min(window.scrollY / viewportHeight, 1.25));
+  constructor(private http: HttpClient) {}
+
+  isSubmitting() {
+    return this.submitting();
   }
 
-  selectProject(projectId: string): void {
+  submitState() {
+    return this.submitStatus();
+  }
+
+  submitMessage() {
+    return this.submitFeedback();
+  }
+
+  selectProject(projectId: string) {
     this.selectedProjectId.set(projectId);
   }
 
-  async submitContactForm(
-    event: Event,
-    name: string,
-    email: string,
-    subject: string,
-    message: string,
-    honey: string
-  ): Promise<void> {
-    event.preventDefault();
-
-    if (this.isSubmitting()) {
+  sendMessage() {
+    if (
+      !this.formData.name.trim() ||
+      !this.formData.email.trim() ||
+      !this.formData.subject.trim() ||
+      !this.formData.message.trim()
+    ) {
+      this.submitStatus.set('error');
+      this.submitFeedback.set('Merci de remplir tous les champs.');
       return;
     }
 
-    this.isSubmitting.set(true);
-    this.submitState.set('idle');
-    this.submitMessage.set('');
+    this.submitting.set(true);
+    this.submitStatus.set('idle');
+    this.submitFeedback.set('');
 
-    const formData = new FormData();
-    formData.append('name', name.trim());
-    formData.append('email', email.trim());
-    formData.append('subject', subject.trim());
-    formData.append('message', message.trim());
-    formData.append('_subject', `Portfolio Magaly - ${subject.trim()}`);
-    formData.append('_template', 'table');
-    formData.append('_captcha', 'false');
-    formData.append('_honey', honey);
+    const formPayload = new FormData();
+    formPayload.append('name', this.formData.name);
+    formPayload.append('email', this.formData.email);
+    formPayload.append('subject', this.formData.subject);
+    formPayload.append('message', this.formData.message);
 
-    try {
-      const response = await fetch(`https://formsubmit.co/ajax/${this.contactEmail}`, {
-        method: 'POST',
+    // Remplace TON_ENDPOINT_FORMSUBMIT par ton vrai endpoint si nécessaire
+    this.http
+      .post('https://formsubmit.co/ajax/wintzer.magaly@gmail.com', formPayload, {
         headers: {
           Accept: 'application/json'
+        }
+      })
+      .pipe(finalize(() => this.submitting.set(false)))
+      .subscribe({
+        next: () => {
+          this.submitStatus.set('success');
+          this.submitFeedback.set(this.content.contactSection.successMessage);
+
+          this.formData = {
+            name: '',
+            email: '',
+            subject: '',
+            message: ''
+          };
         },
-        body: formData
+        error: () => {
+          this.submitStatus.set('error');
+          this.submitFeedback.set(this.content.contactSection.errorMessage);
+        }
       });
-
-      if (!response.ok) {
-        throw new Error('Submission failed');
-      }
-
-      this.submitState.set('success');
-      this.submitMessage.set(this.content.contactSection.successMessage);
-
-      const form = event.target as HTMLFormElement | null;
-      form?.reset();
-    } catch {
-      this.submitState.set('error');
-      this.submitMessage.set(this.content.contactSection.errorMessage);
-    } finally {
-      this.isSubmitting.set(false);
-    }
   }
 }

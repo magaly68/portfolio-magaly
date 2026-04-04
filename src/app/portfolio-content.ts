@@ -40,13 +40,13 @@ export const portfolioContent = {
   portfolioUrl: 'https://portfolio-magaly.vercel.app',
   cvUrl: '/documents/Magaly-Wintzer-CV.pdf',
   hero: {
-    eyebrow: 'Portfolio 2026 / Angular',
+    eyebrow: 'Portfolio 2026',
     title: "Je construis des interfaces front-end sobres, utiles et faites pour être comprises rapidement.",
     text:
       "Je suis Magaly Wintzer. À partir de mon profil GitHub public, du projet EpiGuard et de plusieurs dépôts personnels, ce portfolio raconte un parcours en construction entre HTML, CSS, JavaScript, React, Angular, des prototypes mobiles et des projets réalisés pour le web.",
     projectsCta: 'Voir les projets',
-    cvCta: 'Télécharger le CV',
-    githubCta: 'Ouvrir GitHub',
+    cvCta: 'Télécharger',
+    githubCta: 'Ouvrir',
     noteTitle: "Intentions d'interaction",
     noteText: "Révélation progressive, rail de projets interactif et héros qui réagit au défilement."
   },
@@ -55,14 +55,14 @@ export const portfolioContent = {
     title:
       "Un parcours qui avance par projets, avec une vraie attention pour la lisibilité, l'UX et l'accessibilité.",
     paragraphs: [
-      "Je travaille surtout le front-end comme un espace de clarté et j'aime organiser une page, faire ressortir l'information essentielle et donner à chaque interaction une raison d'être.",
+      "Je travaille  le front-end comme un espace de clarté et j'aime organiser une page, faire ressortir l'information essentielle et donner à chaque interaction une raison d'être.",
       "Mes projets publics montrent cette progression : des bases HTML et CSS jusqu'à des interfaces plus denses, des expériences narratives et un prototype mobile pensé comme un vrai produit."
     ]
   },
   timeline: {
     eyebrow: 'Mon parcours',
     title:
-      "Le fil conducteur reste le même : apprendre en fabriquant, puis rendre chaque projet plus lisible et plus utile que le précédent."
+      "Le fil conducteur reste le même : apprendre en fabriquant, puis rendre chaque projet plus utile que le précédent."
   },
   projectsSection: {
     eyebrow: 'Projets choisis',
@@ -77,10 +77,10 @@ export const portfolioContent = {
     eyebrow: 'Contact',
     title: "Parlons d'un stage, d'une mission ou d'un projet à construire.",
     text:
-      "Le portfolio renvoie vers GitHub, mais vous pouvez aussi me contacter directement depuis cette page ou télécharger un CV de synthèse. Les messages sont transmis à wintzer.magaly@gmail.com.",
+      "Le portfolio est disponible sur GitHub, mais vous pouvez aussi me contacter directement depuis cette page ou télécharger un CV de synthèse. Les messages sont transmis à wintzer.magaly@gmail.com.",
     cvCta: 'Télécharger le CV',
-    githubCta: 'Aller sur GitHub',
-    emailCta: 'Envoyer un e-mail direct',
+    githubCta: 'GitHub',
+    emailCta: 'Envoyer un e-mail',
     successMessage:
       "Message envoyé. Vérifiez votre boîte Gmail pour confirmer FormSubmit lors du tout premier envoi.",
     errorMessage:
